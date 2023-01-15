@@ -38,6 +38,7 @@ class Event:
         """
         from: https://github.com/monty888/nostrpy/blob/master/nostr/event/event.py#L257
         """
+        assert(self.privkey is not None), "error: private key needs to be set"
         self.id = self.get_id()
 
         # pk = secp256k1.PrivateKey(priv_key)
@@ -54,7 +55,6 @@ class Event:
         return int(time.time())
 
     def finalize(self):
-        assert(self.privkey is not None), "error: private key needs to be set"
         self.id = self.get_id()
         self.sig = self.get_sig()
         return self
